@@ -14,6 +14,8 @@
 #include <fstream>
 #include <iomanip>
 #include <sstream>
+#include "Common.h"
+#include "IniParser.h"
 #include "GH Injector.h"
 #include <TlHelp32.h>
 
@@ -239,6 +241,14 @@ int main(void)
     static int lay = 4;
     // const char* update = "";
 
+    CIniParser* IniParser = new CIniParser();
+    IniParser->szFile = ExePath() + "\\Config.ini";
+
+    if (!FileExists(IniParser->szFile))
+    {
+        IniParser->Write(std::to_string(7).c_str(), "login", "123");
+        IniParser->Write(std::to_string(7).c_str(), "password", "123");
+    }
 
     memset(&wc, 0, sizeof(wc));
     wc.lpfnWndProc = WindowProc;
@@ -281,8 +291,14 @@ int main(void)
 
     bg.r = 0.10f, bg.g = 0.18f, bg.b = 0.24f, bg.a = 1.0f;
 
-    strcpy(buf, "***");
-    strcpy(buff, "***");
+    char* keyss = _strdup(IniParser->ReadString(std::to_string(7).c_str(), "login").c_str());
+    char* keye = _strdup(IniParser->ReadString(std::to_string(7).c_str(), "password").c_str());
+
+    strcpy(buf, keyss);
+    strcpy(buff, keye);
+
+    free(keye);
+    free(keyss);
 
     while (running)
     {
@@ -304,7 +320,7 @@ int main(void)
             static int op = EASY;
             static int delay = 1;
             static int checkbox;
-            static int check = 1;
+            static int check = 0;
  
             Sleep(1);
 
@@ -402,7 +418,20 @@ int main(void)
             nk_layout_row_static(ctx, 10, 10, 10);
 
             if (show_overview)
-                nk_layout_row_static(ctx, 30, 80, 50);
+                nk_layout_row_static(ctx, 20, 70, 25);
+            if (show_overview)
+                if (nk_checkbox_label(ctx, "Remember", &check)) {
+                    if (check == 1) {
+                        IniParser->Write(std::to_string(7).c_str(), "login", buff);
+                        IniParser->Write(std::to_string(7).c_str(), "password", buf);
+                    }
+                    if (check == 0) {
+                        /* SetPriorityClass(GetCurrentProcess(), NORMAL_PRIORITY_CLASS);*/
+                    }
+                }
+
+            if (show_overview)
+                nk_layout_row_static(ctx, 25, 60, 30);
             if (show_overview)
                 if (nk_button_label(ctx, "Login")) {
                     if (!strcmp(buff, "123") && (!strcmp(buf, "123"))) {
