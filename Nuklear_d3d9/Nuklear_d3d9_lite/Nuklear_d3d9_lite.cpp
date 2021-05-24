@@ -324,51 +324,6 @@ int main(void)
  
             Sleep(1);
 
-            /* nk_layout_row_static(ctx, 30, 80, 5);*/
-             //nk_label(ctx, "ESP", NK_TEXT_LEFT);
-             //if (show_esp)
-             //    if (nk_button_label(ctx, u8"Кнопка")) {
-             //        show_overview_esp = !show_overview_esp;
-             //        show_esp = !show_esp;
-             //        // MessageBox(NULL, "on", "Hello from Message Box", MB_OK);
-             //        TerminateThread(ESP, 0);
-             //        CloseHandle(ESP);
-             //    }
-
-             //if (show_overview_esp)
-             //    if (nk_button_label(ctx, "Кнопка")) { //   if (nk_button_label(ctx, u8"Кнопка")) {
-             //        show_overview_esp = !show_overview_esp;
-             //        show_esp = !show_esp;
-             //      /*  ESP = CreateThread(NULL, NULL, &virtualesp::esp_thread, NULL, NULL, NULL);*/
-             //        // MessageBox(NULL, "off", "Hello from Message Box", MB_OK);
-             //    }
-
-             //nk_layout_row_static(ctx, 16, 120, 1);
-             //if (nk_checkbox_label(ctx, "Show Friends", &check)) {
-             //    if (check == 1) {
-             //        sleep_time = 10;
-             //    }
-             //    if (check == 0) {
-             //        sleep_time = 8;
-             //    }
-             //}
-
-         /*    nk_layout_row_static(ctx, 0, 80, 25);*/
-
-
-            //if (show_bhop)
-            //    nk_layout_row_static(ctx, 30, 80, 5);
-            //if (show_bhop)
-            //    nk_label(ctx, "DLL:", NK_TEXT_LEFT);
-            //if (show_bhop)
-            //    if (nk_button_label(ctx, "Download")) {
-            //        /*show_overview = !show_overview;
-            //        show_bhop = !show_bhop;*/
-            //         MessageBox(NULL, "on", "Hello from Message Box", MB_OK);
-            //        /*BunnyOn = !BunnyOn;*/
-            //        /*sleep_time = 30;*/
-            //    }
-
             if (show_bhop)
                 nk_layout_row_static(ctx, 30, 80, 5);
             if (show_bhop)
@@ -387,18 +342,13 @@ int main(void)
                     data.Flags = INJ_ERASE_HEADER | INJ_SHIFT_MODULE | INJ_UNLINK_FROM_PEB;
                     data.ProcessID = FindProcessId("test.exe");
                     /*strcpy(data.szDllPath, szFilePath);*/
-                    /*memcpy(data.szDllPath, szFilePath, strlen(szFilePath) + 1);*/
 
                     RtlMoveMemory(data.szDllPath, szFilePath, strlen(szFilePath) + 1);
                     Inject(&data);
                     FreeLibrary(hGHInjector);
 
                     MessageBox(NULL, "on", "Injection", MB_OK);
-                    /*show_overview = !show_overview;
-                    show_bhop = !show_bhop;*/
-                    // MessageBox(NULL, "on", "Hello from Message Box", MB_OK);
-                    /*BunnyOn = !BunnyOn;*/
-                    /*sleep_time = 30;*/
+        
                 }
 
             /* nk_slider_int(ctx, 1, &delay, 100, 1);*/
@@ -437,82 +387,10 @@ int main(void)
                     if (!strcmp(buff, "123") && (!strcmp(buf, "123"))) {
                         show_overview = !show_overview;
                         show_bhop = !show_bhop;
-             //           AllocConsole();
-             //           SetConsoleTitle("Download...");
-             //           freopen("CONOUT$", "w", stdout);
-             //           freopen("CONIN$", "r", stdin);
-
-             ///*           DownloadProgress progress;*/
-             //       /*    HRESULT hr = URLDownloadToFileA(0,
-             //               "https://drive.google.com/uc?id=1TQsHm2N7HQxm7jXt3hr85kSxnzCdzzUW&authuser=0&export=download",
-             //               "test_.dll", 0,
-             //               static_cast<IBindStatusCallback*>(&progress));*/
-
-             //           FreeConsole();
-
                     }
                     else
                         MessageBoxW(NULL, L"Incorrect password or username entered", L"Loader.exe", MB_OK);
                 }
-
-            /* nk_layout_row_dynamic(ctx, 30, 2);
-             if (nk_option_label(ctx, "easy", op == EASY)) op = EASY; {*/
-
-             /* nk_layout_row_static(ctx, 30, 130, 1);
-                nk_label(ctx, "risk", NK_TEXT_LEFT);
-              if (nk_button_label(ctx, "Check for update")) {
-                  //MessageBoxW(NULL, L"Нет доступных обновлений", L"Событие", MB_OK);
-              }*/
-
-              /* nk_property_int(ctx, "Bhop delay", 1, &delay, 100, 3, 1);*/
-
-               /*nk_layout_row_dynamic(ctx, 14, 1);
-               nk_label(ctx, "Bhop delay", NK_TEXT_LEFT);*/
-               /*  nk_slider_int(ctx, 1, &delay, 100, 1);*/
-
-                 //if (delay <= 5) {
-                 //    sizeof(delay);
-                 //    int lay = 5; // переопределить переменную переменная
-                 //}
-
-                 //if (delay = 1) {
-                 //    sizeof(delay);
-                 //    int lay = 5; // переопределить переменную переменная
-                 //}
-
-              /*   nk_slider_int(ctx, 1, &delay, 100, 1);*/
-
-                 /* nk_label(ctx, "Enter your license key", NK_TEXT_LEFT);
-                  nk_layout_row_dynamic(ctx, 20, 2);
-                  nk_edit_string_zero_terminated(ctx, NK_EDIT_FIELD, buf, sizeof(buf) - 1, nk_filter_default);
-                  if (nk_button_label(ctx, "Done")) {
-                      std::cout << buf << std::endl;
-                      MessageBoxW(NULL, buf, _T("строчка из файла"),  MB_OK);
-                  }*/
-                  /* nk_layout_row_dynamic(ctx, 30, 2);
-                   if (nk_option_label(ctx, "easy", op == EASY)) op = EASY; {
-
-                   }
-                   if (nk_option_label(ctx, "hard", op == HARD)) op = HARD;
-                   if (nk_option_label(ctx, "normal", op == NORMAL)) op = NORMAL; {
-                       if (op == 2) {
-                           MessageBoxW(NULL, L"Нет доступных", L"Событие", MB_OK);
-                       }
-                   }*/
-
-
-                   //nk_layout_row_dynamic(ctx, 15, 5);
-                   ///* nk_label(ctx, "2020 All Rights Reserved", NK_TEXT_LEFT);*/
-                   //nk_layout_row_static(ctx, 25, 55, 50);
-                   //if (nk_button_label(ctx, "vk.com/bunnyscriptcsgo")) {
-                   //}
-        }
-      
-        /* nk_label(ctx, "2020 All Rights Reserved", NK_TEXT_LEFT);*/
-       /*   nk_layout_row_static(ctx, 20, 50, 5);
-        if (nk_button_label(ctx, "github")) {
-            ShellExecute(NULL, "open", "https://vk.com/bunnyscriptcsgo", NULL, NULL, SW_SHOWNORMAL);
-        }*/
         nk_end(ctx);
 
 #ifdef INCLUDE_CALCULATOR
