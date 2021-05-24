@@ -14,7 +14,7 @@
 
 #define INJ_MAX_FLAGS 0x01FF
 
-struct INJECTIONDATA // typedef пропускается, когда не одна переменная не объявленна
+struct INJECTIONDATA // typedef ГЇГ°Г®ГЇГіГ±ГЄГ ГҐГІГ±Гї, ГЄГ®ГЈГ¤Г  Г­ГҐ Г®Г¤Г­Г  ГЇГҐГ°ГҐГ¬ГҐГ­Г­Г Гї Г­ГҐ Г®ГЎГєГїГўГ«ГҐГ­Г­Г 
 {
 	DWORD			LastErrorCode;
 	char			szDllPath[MAX_PATH * 2];
@@ -26,5 +26,4 @@ struct INJECTIONDATA // typedef пропускается, когда не одна переменная не объявл
 	//HINSTANCE		hDllOut;
 };
 
-typedef DWORD(__stdcall* fnInject)(INJECTIONDATA*); // int с маленькой буквы отличается от большой Int, Dword - это возвращает значение uint,
- //звездочка * это поинтер в ahk
+typedef DWORD(__stdcall* fnInject)(INJECTIONDATA*);
